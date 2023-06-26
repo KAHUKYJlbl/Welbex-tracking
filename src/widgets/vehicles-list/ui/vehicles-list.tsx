@@ -8,14 +8,24 @@ import { useAppSelector } from '../../../shared/lib/hooks/use-app-selector';
 import { VehicleCard } from '../../../entities/vehicle/ui/vechile-card';
 import { fetchVehicles } from '../model/api-actions.ts/fetch-vechiles';
 import { getVehicles } from '../model/vechiles-selectors';
+import { SortTypes } from '../../../features/vehicles-sort/model/sort-slice';
+// import { SortTypes } from '../../../features/vehicles-sort/model/sort-slice';
+// import { getCurrentSort } from '../../../features/vehicles-sort';
 
 type VehiclesListProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Vehicles', undefined>;
+  currentSort: SortTypes;
 }
 
-export function VehiclesList ({navigation}: VehiclesListProps): JSX.Element {
+export function VehiclesList ({navigation, currentSort}: VehiclesListProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const vehicles = useAppSelector(getVehicles);
+
+  const vehicles = useAppSelector(getVehicles)
+    .filter((vehicle) => currentSort === 'All' || vehicle.carType === currentSort);
+
+  // useEffect(() => {
+  //   vehicles = vehicles.filter((vehicle) => currentSort === 'All' || vehicle.carType === currentSort);
+  // }, [currentSort, vehicles]);
 
   useEffect(() => {
     dispatch(fetchVehicles());
@@ -27,11 +37,6 @@ export function VehiclesList ({navigation}: VehiclesListProps): JSX.Element {
         data={vehicles}
         renderItem={({item}) => <VehicleCard key={item.id} vehicle={item} navigation={navigation} />}
       />
-      {/* {
-        vehicles.map((vehicle) =>
-          <VehicleCard key={vehicle.id} vehicle={vehicle} navigation={navigation} />
-        )
-      } */}
     </View>
   );
 }

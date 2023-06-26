@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { FetchStatus } from '../../../shared/types/fetch-status';
 import { Vehicle } from '../../../entities/vehicle';
 import { fetchVehicles } from './api-actions.ts/fetch-vechiles';
-// import { NameSpace } from '../../../app/provider/store';
 
 type InitialState = {
   vehiclesLoadingStatus: FetchStatus;
@@ -17,7 +16,6 @@ const initialState: InitialState = {
 
 export const vehiclesSlice = createSlice({
   name: 'Vehicles',
-  // name: NameSpace.Vehicles,
   initialState,
   reducers: {},
   extraReducers(builder) {

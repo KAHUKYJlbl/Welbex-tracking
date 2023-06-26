@@ -1,7 +1,9 @@
+import { VehicleTypes } from '../../../shared/types/vehicle-types';
+
 export type Vehicle = {
   id: string;
   carName: string;
-  carType: 'Diesel' | 'Gasoline' | 'Electric' | 'Hybrid';
+  carType: VehicleTypes;
   name: string;
   phone: string;
   latitude: string;

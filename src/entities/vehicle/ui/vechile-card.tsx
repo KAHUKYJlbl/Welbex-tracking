@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   vehicle: {
     fontSize: 18,
-    margin: 'auto',
+    marginRight: 'auto',
   },
   driver: {
     marginRight: 10,
@@ -55,7 +55,7 @@ export function VehicleCard ({vehicle, navigation}: VehicleCardProps): JSX.Eleme
         {VehicleIcons[vehicle.carType]}
 
         <Text style={styles.vehicle} >
-          {vehicle.carName}#{vehicle.id}
+          {vehicle.carName} #{vehicle.id}
         </Text>
 
         <View style={styles.driver}>

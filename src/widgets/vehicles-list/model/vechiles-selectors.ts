@@ -6,7 +6,7 @@ import { Vehicle } from '../../../entities/vehicle';
 
 export const getVehicles = (state: State): Vehicle[] => state[NameSpace.Vehicles].vehicles;
 
-export const getCameraLoadingStatus = createSelector(
+export const getVehiclesStatus = createSelector(
   (state: State): FetchStatus => state[NameSpace.Vehicles].vehiclesLoadingStatus,
   (status) => ({
     isLoading: [FetchStatus.Idle, FetchStatus.Pending].includes(status),

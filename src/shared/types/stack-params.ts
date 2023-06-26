@@ -1,6 +1,8 @@
+import { Vehicle } from '../../entities/vehicle';
+
 export type RootStackParamList = {
   Vehicles: undefined;
   Map: {
-    vehicleName: string;
+    vehicle: Vehicle;
   };
 }

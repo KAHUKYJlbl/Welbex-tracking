@@ -9,8 +9,6 @@ import { VehicleCard } from '../../../entities/vehicle/ui/vechile-card';
 import { fetchVehicles } from '../model/api-actions.ts/fetch-vechiles';
 import { getVehicles } from '../model/vechiles-selectors';
 import { SortTypes } from '../../../features/vehicles-sort/model/sort-slice';
-// import { SortTypes } from '../../../features/vehicles-sort/model/sort-slice';
-// import { getCurrentSort } from '../../../features/vehicles-sort';
 
 type VehiclesListProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Vehicles', undefined>;
@@ -22,10 +20,6 @@ export function VehiclesList ({navigation, currentSort}: VehiclesListProps): JSX
 
   const vehicles = useAppSelector(getVehicles)
     .filter((vehicle) => currentSort === 'All' || vehicle.carType === currentSort);
-
-  // useEffect(() => {
-  //   vehicles = vehicles.filter((vehicle) => currentSort === 'All' || vehicle.carType === currentSort);
-  // }, [currentSort, vehicles]);
 
   useEffect(() => {
     dispatch(fetchVehicles());

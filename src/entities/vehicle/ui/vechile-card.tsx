@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     margin: 10,
-  }
+  },
 });
 
 const VehicleIcons = {
@@ -49,7 +49,7 @@ const VehicleIcons = {
 export function VehicleCard ({vehicle, navigation}: VehicleCardProps): JSX.Element {
   return (
     <TouchableNativeFeedback
-      onPress={() => navigation.navigate('Map', {vehicleName: vehicle.carName})}
+      onPress={() => navigation.navigate('Map', {vehicle: vehicle})}
     >
       <View style={styles.container} >
         {VehicleIcons[vehicle.carType]}

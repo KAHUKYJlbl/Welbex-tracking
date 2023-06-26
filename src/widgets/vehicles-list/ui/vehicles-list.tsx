@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { View } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { RootStackParamList } from '../../../shared/types/stack-params';
@@ -23,11 +23,15 @@ export function VehiclesList ({navigation}: VehiclesListProps): JSX.Element {
 
   return (
     <View>
-      {
+      <FlatList
+        data={vehicles}
+        renderItem={({item}) => <VehicleCard key={item.id} vehicle={item} navigation={navigation} />}
+      />
+      {/* {
         vehicles.map((vehicle) =>
           <VehicleCard key={vehicle.id} vehicle={vehicle} navigation={navigation} />
         )
-      }
+      } */}
     </View>
   );
 }

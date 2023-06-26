@@ -1,4 +1,4 @@
-import { Button } from 'react-native';
+import { Text, TouchableNativeFeedback, Image, View, StyleSheet } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { Vehicle } from '../types/vehicle';
@@ -9,11 +9,63 @@ type VehicleCardProps = {
   vehicle: Vehicle;
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
+    borderBottomStyle: 'solid',
+  },
+  image: {
+    width: 60,
+    height: 60,
+    margin: 20,
+  },
+  vehicle: {
+    fontSize: 18,
+    margin: 'auto',
+  },
+  driver: {
+    marginRight: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  driverImage: {
+    width: 20,
+    height: 20,
+    margin: 10,
+  }
+});
+
+const VehicleIcons = {
+  Diesel: <Image source={require('../../../../assets/vehicle-icons/truck.png')} style={styles.image} />,
+  Gasoline: <Image source={require('../../../../assets/vehicle-icons/bike.png')} style={styles.image} />,
+  Electric: <Image source={require('../../../../assets/vehicle-icons/tractor.png')} style={styles.image} />,
+  Hybrid: <Image source={require('../../../../assets/vehicle-icons/car.png')} style={styles.image} />,
+} as const;
+
 export function VehicleCard ({vehicle, navigation}: VehicleCardProps): JSX.Element {
   return (
-    <Button
-      title={vehicle.carName}
+    <TouchableNativeFeedback
       onPress={() => navigation.navigate('Map', {vehicleName: vehicle.carName})}
-    />
+    >
+      <View style={styles.container} >
+        {VehicleIcons[vehicle.carType]}
+
+        <Text style={styles.vehicle} >
+          {vehicle.carName}#{vehicle.id}
+        </Text>
+
+        <View style={styles.driver}>
+          <Text>
+            {vehicle.name}
+          </Text>
+
+          <Image source={require('../../../../assets/vehicle-icons/driver.png')} style={styles.driverImage} />
+        </View>
+      </View>
+    </TouchableNativeFeedback>
   );
 }
